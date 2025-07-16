@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Просмотр камеры</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body id="mainBody">
+    <div class="container">
+        <!-- Navigation Header -->
+        <div class="nav-header">
+            <div>
+                <h3>Live-камера</h3>
+                <p style="color: var(--text-secondary); margin: 0;">Прямая трансляция с камеры наблюдения</p>
+            </div>
+            <div class="nav-actions">
+                <a href="/" class="btn btn-secondary">Назад</a>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="video-container">
+                <div style="margin-bottom: 20px;">
+                    <div style="font-size: 2rem; color: var(--primary-blue); margin-bottom: 12px;">📹</div>
+                    <h5>Камера 1 - Главный вход</h5>
+                    <small style="color: var(--text-secondary);">Статус: Подключена | Качество: HD</small>
+                </div>
+                <div>
+                    <img src="{{ url_for('video_feed') }}" class="video-feed">
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px;">
+                    <div style="text-align: center;">
+                        <small style="color: var(--text-secondary);">
+                            Время: <span id="currentTime"></span>
+                        </small>
+                    </div>
+                    <div style="text-align: center;">
+                        <small style="color: var(--text-secondary);">
+                            Сигнал: 75%
+                        </small>
+                    </div>
+                    <div style="text-align: center;">
+                        <small style="color: var(--text-secondary);">
+                            Запись: Активна
+                        </small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-grid" style="margin-top: 30px;">
+                <div class="card">
+                    <h6>Информация о камере</h6>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 8px;"><small style="color: var(--text-secondary);">📍 Расположение: Главный вход</small></li>
+                        <li style="margin-bottom: 8px;"><small style="color: var(--text-secondary);">👁️ Угол обзора: 120°</small></li>
+                        <li style="margin-bottom: 8px;"><small style="color: var(--text-secondary);">📐 Разрешение: 1920x1080</small></li>
+                        <li style="margin-bottom: 8px;"><small style="color: var(--text-secondary);">⏱️ FPS: 20</small></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h6>Управление</h6>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <button class="btn btn-secondary">Полноэкранный режим</button>
+                        <button class="btn btn-secondary">Сделать снимок</button>
+                        <button class="btn btn-secondary">Настройки камеры</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

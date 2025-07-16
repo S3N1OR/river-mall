@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Настройки - River Mall</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body id="mainBody">
+    <div class="container">
+        <!-- Navigation Header -->
+        <div class="nav-header">
+            <div>
+                <h2>Настройки River Mall</h2>
+            </div>
+            <div class="nav-actions">
+                <a href="/" class="btn btn-secondary">Главная</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="settings-tabs">
+                <button class="tab-button active" onclick="showTab('general')">Общие</button>
+                <button class="tab-button" onclick="showTab('camera')">Камера</button>
+                <button class="tab-button" onclick="showTab('security')">Безопасность</button>
+                <button class="tab-button" onclick="showTab('backup')">Резервное копирование</button>
+                <button class="tab-button" onclick="showTab('system')">Система</button>
+            </div>
+
+            <div id="settingsTabContent">
+                <!-- Общие настройки -->
+                <div id="general" class="tab-content active">
+                    <div class="content-grid">
+                        <div class="card">
+                            <h5>Настройки парковки</h5>
+                            <form>
+                                <div style="margin-bottom: 16px;">
+                                    <label>Название парковки</label>
+                                    <input type="text" class="form-control" value="River Mall" placeholder="Введите название">
+                                </div>
+                                <div style="margin-bottom: 16px;">
+                                    <label>Адрес</label>
+                                    <input type="text" class="form-control" value="ул. Примерная, 123" placeholder="Введите адрес">
+                                </div>
+                                <div style="margin-bottom: 16px;">
+                                    <label>Количество мест</label>
+                                    <input type="number" class="form-control" value="50" min="1" max="1000">
+                                </div>
+                                <div style="margin-bottom: 20px;">
+                                    <label>Часов работы</label>
+                                    <select class="form-control">
+                                        <option>24/7</option>
+                                        <option>6:00 - 23:00</option>
+                                        <option>8:00 - 20:00</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn">Сохранить</button>
+                            </form>
+                        </div>
+                        <div class="card">
+                            <h5>Статистика</h5>
+                            <div class="stats-grid" style="grid-template-columns: repeat(2, 1fr);">
+                                <div class="stat-card">
+                                    <div class="stat-number">25</div>
+                                    <div class="stat-label">Водителей</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number">150</div>
+                                    <div class="stat-label">Событий сегодня</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number">80%</div>
+                                    <div class="stat-label">Заполненность</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number">12</div>
+                                    <div class="stat-label">Свободных мест</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Настройки камеры -->
+                <div id="camera" class="tab-content">
+                    <div class="content-grid">
+                        <div class="card">
+                            <h5>Настройки камеры</h5>
+                            <form>
+                                <div style="margin-bottom: 16px;">
+                                    <label>RTSP URL</label>
+                                    <input type="text" class="form-control" value="rtsp://admin:пароль@192.168.1.100:554/Streaming/Channels/101/">
+                                </div>
+                                <div style="margin-bottom: 16px;">
+                                    <label>Качество записи</label>
+                                    <select class="form-control">
+                                        <option>HD (720p)</option>
+                                        <option selected>Full HD (1080p)</option>
+                                        <option>4K (2160p)</option>
+                                    </select>
+                                </div>
+                                <div style="margin-bottom: 16px;">
+                                    <label>FPS</label>
+                                    <select class="form-control">
+                                        <option>15</option>
+                                        <option selected>20</option>
+                                        <option>30</option>
+                                    </select>
+                                </div>
+                                <div style="margin-bottom: 20px;">
+                                    <label>Длительность хранения (дни)</label>
+                                    <input type="number" class="form-control" value="30" min="1" max="365">
+                                </div>
+                                <button type="submit" class="btn">Сохранить</button>
+                            </form>
+                        </div>
+                        <div class="card">
+                            <h5>Предварительный просмотр</h5>
+                            <div style="text-align: center; padding: 40px;">
+                                <div style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 16px;">📹</div>
+                                <p style="color: var(--text-secondary); margin-bottom: 16px;">Камера подключена</p>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 75%"></div>
+                                </div>
+                                <small style="color: var(--text-secondary);">Сигнал: 75%</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Безопасность -->
+                <div id="security" class="tab-content">
+                    <div class="content-grid">
+                        <div class="card">
+                            <h5>Настройки безопасности</h5>
+                            <form>
+                                <div style="margin-bottom: 16px;">
+                                    <label>Логин администратора</label>
+                                    <input type="text" class="form-control" value="admin">
+                                </div>
+                                <div style="margin-bottom: 16px;">
+                                    <label>Новый пароль</label>
+                                    <input type="password" class="form-control" placeholder="Введите новый пароль">
+                                </div>
+                                <div style="margin-bottom: 16px;">
+                                    <label>Подтвердите пароль</label>
+                                    <input type="password" class="form-control" placeholder="Повторите пароль">
+                                </div>
+                                <div style="margin-bottom: 16px;">
+                                    <label style="display: flex; align-items: center; gap: 8px;">
+                                        <input type="checkbox" checked>
+                                        Автоматический выход через 30 минут
+                                    </label>
+                                </div>
+                                <div style="margin-bottom: 20px;">
+                                    <label style="display: flex; align-items: center; gap: 8px;">
+                                        <input type="checkbox" checked>
+                                        Логировать все события
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn">Сохранить</button>
+                            </form>
+                        </div>
+                        <div class="card">
+                            <h5>Последние события</h5>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Время</th>
+                                        <th>Событие</th>
+                                        <th>Статус</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>14:30</td>
+                                        <td>Вход в систему</td>
+                                        <td><span class="badge badge-success">Успешно</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>14:25</td>
+                                        <td>Добавлен водитель</td>
+                                        <td><span class="badge badge-primary">Инфо</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>14:20</td>
+                                        <td>Попытка входа</td>
+                                        <td><span class="badge badge-danger">Ошибка</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Резервное копирование -->
+                <div id="backup" class="tab-content">
+                    <div class="content-grid">
+                        <div class="card">
+                            <h5>Резервное копирование</h5>
+                            <div style="margin-bottom: 16px;">
+                                <label>Автоматическое резервное копирование</label>
+                                <select class="form-control">
+                                    <option>Отключено</option>
+                                    <option>Ежедневно</option>
+                                    <option selected>Еженедельно</option>
+                                    <option>Ежемесячно</option>
+                                </select>
+                            </div>
+                            <div style="margin-bottom: 16px;">
+                                <label>Путь для резервных копий</label>
+                                <input type="text" class="form-control" value="/backup/">
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: flex; align-items: center; gap: 8px;">
+                                    <input type="checkbox" checked>
+                                    Включать видео в резервную копию
+                                </label>
+                            </div>
+                            <div style="display: flex; gap: 12px;">
+                                <button class="btn btn-success">Создать резервную копию</button>
+                                <button class="btn btn-secondary">Восстановить</button>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h5>Последние резервные копии</h5>
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--dark-card-hover); border-radius: 8px;">
+                                    <div>
+                                        <strong>backup_2024-01-15.zip</strong><br>
+                                        <small style="color: var(--text-muted);">15 января 2024, 23:00</small>
+                                    </div>
+                                    <span class="badge badge-success">2.5 MB</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--dark-card-hover); border-radius: 8px;">
+                                    <div>
+                                        <strong>backup_2024-01-08.zip</strong><br>
+                                        <small style="color: var(--text-muted);">8 января 2024, 23:00</small>
+                                    </div>
+                                    <span class="badge badge-success">2.3 MB</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--dark-card-hover); border-radius: 8px;">
+                                    <div>
+                                        <strong>backup_2024-01-01.zip</strong><br>
+                                        <small style="color: var(--text-muted);">1 января 2024, 23:00</small>
+                                    </div>
+                                    <span class="badge badge-success">2.4 MB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Система -->
+                <div id="system" class="tab-content">
+                    <div class="content-grid">
+                        <div class="card">
+                            <h5>Системная информация</h5>
+                            <div style="background: var(--dark-card-hover); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+                                <strong>Версия системы:</strong> River Mall v1.0.0<br>
+                                <strong>Python:</strong> 3.9.0<br>
+                                <strong>Flask:</strong> 2.0.0<br>
+                                <strong>Время работы:</strong> 5 дней 12 часов
+                            </div>
+                            <div style="margin-bottom: 16px;">
+                                <label>Использование CPU</label>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 25%"></div>
+                                </div>
+                                <small style="color: var(--text-secondary);">25%</small>
+                            </div>
+                            <div style="margin-bottom: 16px;">
+                                <label>Использование памяти</label>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 60%"></div>
+                                </div>
+                                <small style="color: var(--text-secondary);">60%</small>
+                            </div>
+                            <div style="margin-bottom: 16px;">
+                                <label>Свободное место на диске</label>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 75%"></div>
+                                </div>
+                                <small style="color: var(--text-secondary);">75% свободно</small>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h5>Обслуживание</h5>
+                            <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+                                <button class="btn btn-secondary">Перезапустить сервис</button>
+                                <button class="btn btn-secondary">Очистить логи</button>
+                                <button class="btn btn-secondary">Проверить обновления</button>
+                                <button class="btn btn-secondary">Тест системы</button>
+                            </div>
+                            <div>
+                                <h6>Последние ошибки</h6>
+                                <div style="background: var(--dark-card-hover); padding: 16px; border-radius: 8px;">
+                                    <small style="color: var(--text-secondary);">
+                                        <strong>15:30</strong> - Ошибка подключения к камере<br>
+                                        <strong>14:45</strong> - Не удалось сохранить файл<br>
+                                        <strong>13:20</strong> - Превышен лимит памяти
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Remove active class from all tab buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => button.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>

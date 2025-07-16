@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>River Mall — Панель</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        .simple-badge {
+            display: inline-block;
+            background: #e3e3e3;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 90%;
+            font-weight: 500;
+        }
+        .simple-badge-green {
+            background: #d4edda;
+            color: #155724;
+        }
+        .simple-badge-yellow {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .simple-badge-red {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .simple-badge-grey {
+            background: #dee2e6;
+            color: #495057;
+        }
+        .quick-actions-grid .btn {
+            height: 100%;
+            /* min-height: 80px; */
+            height: 100%;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: normal;
+        }
+        .quick-actions-grid{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            height: 100%;
+        }
+    </style>
+</head>
+<body id="mainBody">
+    <div class="container">
+        <!-- Navigation Header -->
+        <div class="nav-header">
+            <div>
+                <h2>River Mall</h2>
+                <p style="color: var(--text-secondary); margin: 0;">Система управления парковкой</p>
+            </div>
+
+            <div class="nav-actions">
+                <a href="/settings" class="btn btn-secondary">Настройки</a>
+                <a href="/logout" class="btn btn-danger">Выйти</a>
+            </div>
+        </div>
+
+        <div class="col" style="display: flex; gap: 20px;">
+    
+            <!-- Quick Actions -->
+            <div class="card quick-actions-card" style="width: 50%;">
+                <div class="quick-actions-grid">
+                    <a href="/drivers/add" class="btn btn-success">Добавить водителя</a>
+                    <a href="/video" class="btn">Просмотр камеры</a>
+                    <button class="btn btn-secondary">Импорт данных</button>
+                    <button class="btn btn-secondary">Печать отчета</button>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card"> 
+                    <div class="stat-number">{{ drivers|length }}</div>
+                    <div class="stat-label">Водителей</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">{{ logs|length }}</div>
+                    <div class="stat-label">Событий сегодня</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">80%</div>
+                    <div class="stat-label">Заполненность</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Свободных мест</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+
+        <!-- Tables -->
+        <div class="content-grid">
+            <div class="card">
+                <h5>Водители</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Госномер</th>
+                            <th>Город</th>
+                            <th>Тариф</th>
+                            <th>Дата оплаты</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for d in drivers %}
+                        <tr>
+                            <td><span class="simple-badge simple-badge-grey">{{d.get('Госномер','')}}</span></td>
+                            <td>{{d.get('Город','')}}</td>
+                            <td>
+                                <span class="simple-badge {% if d.get('Тариф','') == 'суточный' %}simple-badge-green{% else %}simple-badge-yellow{% endif %}">
+                                    {{d.get('Тариф','')}}
+                                </span>
+                            </td>
+                            <td>{{d.get('Дата оплаты','')}}</td>
+                            <td>
+                                <button onclick="deleteDriver('{{d.get('Госномер','')}}')"
+                                        class="btn btn-danger btn-small">
+                                    Удалить
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="card">
+                <h5>История событий</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Время</th>
+                            <th>Госномер</th>
+                            <th>Тип события</th>
+                            <th>Статус</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for l in logs %}
+                        <tr>
+                            <td><small>{{l.get('Время','')}}</small></td>
+                            <td><span class="simple-badge simple-badge-grey">{{l.get('Госномер','')}}</span></td>
+                            <td>{{l.get('Тип события','')}}</td>
+                            <td>
+                                <span class="simple-badge {% if l.get('Пропущен','') == 'Да' %}simple-badge-red{% else %}simple-badge-green{% endif %}">
+                                    {{l.get('Пропущен','')}}
+                                </span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
